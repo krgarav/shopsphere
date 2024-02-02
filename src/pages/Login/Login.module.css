@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.Login {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #ffcc00, #ff3300);
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    lightblue 5%,
+    white 65%,
+    #003366 100%
+  );
+  display: flex;
+  justify-content: space-around;
+}
+
+.formcontainer {
+  text-align: center;
+  background-color: transparent;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4%;
+  width: 30vw;
+  gap: 10px;
+}
+/* YourComponent.css */
+
+/* .formcontainer {
+  position: relative;
+}
+
+label {
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.3s ease-out, font-size 0.3s ease-out;
+}
+
+.labelup {
+  transform: translateY(-1.5em);
+  font-size: 0.8em;
+}
+
+input {
+  padding: 1em;
+} */
+.icon {
+  font-size: 5rem;
+  color: gray;
+  background-color: gainsboro;
+  margin: 0;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-self: center;
+}
+.formcontainer input {
+  border-radius: 20px;
+  border: none;
+  background-color: lightgray;
+  padding: 5px 10px;
+}
+.formcontainer button {
+  border-radius: 30px;
+  border: none;
+  color: white;
+  font-weight: 700;
+  background-color: #003366;
+  padding: 10px 20px;
+}
+.newaccount {
+  color: red;
+  font-weight: 600;
+  cursor: pointer;
+}
+.newaccount:hover {
+  color: orangered;
+}
+/* .lock{
+  position: relative;
+  bottom: 7%;
+  left: 300px;
+}
+.user{
+  position: relative;
+  bottom: 7%;
+  left: 300px;
+} */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon,
+.user,
+.lock {
+  margin-right: 10px;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.inputcontainer {
+  width: 100%;
+  display: flex;
+}
+.inputcontainer input {
+  width: 100%;
+}
+.user {
+  position: absolute;
+  left: 88%;
+  margin: 5px;
+}
+.lock {
+  position: absolute;
+  left: 88%;
+  margin: 5px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.accountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.accountContainer p {
+  margin: 0;
+  padding: 0;
+}
