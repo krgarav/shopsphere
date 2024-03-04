@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import Cartmodal from "../Modals/Modal";
 import { useDispatch, useSelector } from "react-redux";
+import { IoCartOutline } from "react-icons/io5";
 const NavBar = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -40,13 +41,13 @@ const NavBar = () => {
           </Nav.Item>
           <Nav.Item style={{ float: "right" }}>
             <Button variant="danger" onClick={logoutHandler}>
-              {" "}
               Logout
             </Button>
           </Nav.Item>
         </Nav>
         <span className={classes.cartbtn} onClick={cartHandler}>
-          Cart <span style={{ color: "yellow" }}>{itemsInCart.length}</span>{" "}
+          <IoCartOutline className={classes.carticon} />
+          <span style={{ color: "yellow" }}>{itemsInCart.length}</span>
         </span>
       </Container>
       <Cartmodal show={show} handleClose={handleCartClose} />

@@ -3,3 +3,26 @@
     display: flex;
     justify-content: space-evenly;
 }
+.productContainer{
+    transform: scale(1);
+
+    transition: transform ease-in-out;
+}
+.productContainer:hover{
+    transform: scale(1.1);
+    transition : transform ease-in-out;
+}
+
+/* @keyframes myAnimation {
+    from {
+       
+        transform: scale(1);
+    }
+    to {
+        
+        transform: scale(1.5);
+    }
+} */
+/* .productContainer.animate {
+    animation: myAnimation 2s infinite alternate; 
+} */

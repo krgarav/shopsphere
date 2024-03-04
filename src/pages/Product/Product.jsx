@@ -16,12 +16,9 @@ const Product = () => {
     };
     fetchdata();
   }, []);
-  console.log(itemsInCart);
   const addToCartHandler = (id) => {
     const element = products.filter((item) => item.id === id);
-    console.log(element);
     dispatch(cartAction.addToCart(element));
-    console.log(id);
   };
 
   const allProducts = products.map((item) => (
