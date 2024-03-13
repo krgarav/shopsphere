@@ -5,6 +5,7 @@ import NavBar from "../../components/Navbar/Navbar";
 import classes from "./Product.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../store/cart-slice";
+import Header from "../../components/Header/Header";
 const Product = () => {
   const [products, setProducts] = useState([]);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
@@ -43,7 +44,7 @@ const Product = () => {
 
   return (
     <Fragment>
-      <NavBar />
+      <Header/>
       <div
         style={{
           backgroundColor: "grey",

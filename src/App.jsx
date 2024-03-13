@@ -6,10 +6,10 @@ import Contact from "./pages/Contact/Contact";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Product />} />
       <Route path="/product" element={<Product />} />
-      <Route path ="/contact" element={<Contact/>}/>
-      <Route path="*" element={<Login />}></Route>
+      <Route path="/contact" element={<Contact />} />
+      <Route path="*" element={<Product />}></Route>
     </Routes>
   );
 }

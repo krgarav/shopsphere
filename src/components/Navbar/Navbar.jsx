@@ -10,6 +10,7 @@ const NavBar = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const itemsInCart = useSelector((state) => state.cart.cartItems);
+  const quantityInCart = useSelector((state) => state.cart.quantity);
   const logoutHandler = () => {
     alert("Are you sure you want to logout?");
     navigate("/", { replace: true });
@@ -47,7 +48,7 @@ const NavBar = () => {
         </Nav>
         <span className={classes.cartbtn} onClick={cartHandler}>
           <IoCartOutline className={classes.carticon} />
-          <span style={{ color: "yellow" }}>{itemsInCart.length}</span>
+          <span style={{ color: "yellow" }}>{quantityInCart}</span>
         </span>
       </Container>
       <Cartmodal show={show} handleClose={handleCartClose} />

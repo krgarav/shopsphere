@@ -7,13 +7,12 @@ import { cartAction } from "../../store/cart-slice";
 function Cartmodal(props) {
   const itemsInCart = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  let totalPrice = itemsInCart.reduce((accumulator, item) => accumulator + +item[0].price, 0);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
 
   const removeHandler = (id) => {
     const filteredItem = itemsInCart.filter((item) => item[0].id !== id);
     dispatch(cartAction.removeFromCart(filteredItem));
   };
-  console.log(totalPrice)
   const allItems = itemsInCart.map((item) => {
     return (
       <ListGroup.Item key={item[0].title}>
