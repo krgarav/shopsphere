@@ -1,10 +1,61 @@
-.deletebtn{
-    position: absolute;
-    opacity: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.deletebtn:hover{
-    opacity: 1;
+.listItem{
+    color: black;
+    font-weight: 600;
 }
-.listItem:hover{
+.deletebtn {
+  position: absolute;
+  opacity: 0;
+  font-size: 5rem;
+  top: -10%;
+  right: 3%;
+}
 
+.listItem:hover .deletebtn {
+  opacity: 1;
+}
+.deleteIcon {
+  position: relative;
+  color: rgb(222, 80, 37);
+  box-shadow: 0 0 10px 2px;
+  font-size: 100px;
+  border: 1px solid rgb(223, 96, 38);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+}
+.listItem {
+  position: relative;
+  box-sizing: content-box;
+}
+.listItem:hover .title {
+  text-decoration: underline;
+  color: orangered;
+}
+
+.listItem:hover {
+  border: 1px solid salmon;
+  cursor:default;
+}
+.btn {
+  border: none;
+  margin: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+  color: darkgray;
+  font-size: 1.5rem;
+}
+.inputBox {
+  border: none;
+  width: 100%;
+  padding: 5px;
+  height: fit-content;
+  margin: 0;
+  border-radius: 50%;
+  background-color: rgb(185, 185, 185);
+  color: black;
+  font-weight: 700;
 }

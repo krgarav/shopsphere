@@ -14,25 +14,30 @@ import Pagination from "@mui/material/Pagination";
 const Product = () => {
   const [products, setProducts] = useState([]);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
+  const currentPageProducts = useSelector(
+    (state) => state.cart.currentPageProducts
+  );
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchdata = async () => {
       const res = await axios.get("https://dummyjson.com/products?limit=10");
-      setProducts(res.data.products);
+      dispatch(cartAction.addToCurrentPageProduct(res.data.products));
     };
     fetchdata();
   }, [page]);
-  const addToCartHandler = (id) => {
-    const element = products.filter((item) => item.id === id);
-    dispatch(cartAction.addToCart(element));
+  const addToCartHandler = (index) => {
+    // const element = products.filter((item) => item.id === id);
+    console.log(index)
+    dispatch(cartAction.addToCart(index));
   };
-
+  console.log(itemsInCart);
   const handleChange = (event, value) => {
     console.log(value);
     setPage(value);
   };
-  const allProducts = products.map((item) => {
+  // console.log(currentPageProducts[0]);
+  const allProducts = currentPageProducts.map((item,index) => {
     return (
       <Col
         key={item.title}
@@ -47,7 +52,7 @@ const Product = () => {
             component="img"
             alt="prdt"
             height="200"
-            image-contain
+            // image-contain={true}
             image={item.thumbnail}
             style={{ objectFit: "fill" }}
           />
@@ -68,7 +73,7 @@ const Product = () => {
             <Button
               size="large"
               variant="contained"
-              onClick={() => addToCartHandler(item.id)}
+              onClick={() => addToCartHandler(index)}
             >
               Add To Cart
             </Button>
