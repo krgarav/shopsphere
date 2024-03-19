@@ -3,9 +3,12 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, ListGroup, Image } from "react-bootstrap";
 import { cartAction } from "../../store/cart-slice";
-
+import { useState } from "react";
+import classes from "./Modal.module.css";
 function Cartmodal(props) {
   const itemsInCart = useSelector((state) => state.cart.cartItems);
+  const [enteredQty, setEnteredQty] = useState(1);
+
   const dispatch = useDispatch();
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
@@ -14,35 +17,55 @@ function Cartmodal(props) {
     dispatch(cartAction.removeFromCart(filteredItem));
   };
   const allItems = itemsInCart.map((item) => {
+    const totalPrice = +item[0].price * enteredQty;
     return (
-      <ListGroup.Item key={item[0].title}>
-        <Container>
-          <Row>
-            <Col>
-              <Image src={item[0].thumbnail} thumbnail />
-              <p>{item[0].title}</p>
-            </Col>
-            <Col>
-              <p> {item[0].price}</p>
-            </Col>
-            <Col>
-              <input
-                type="number"
-                min="1"
-                max="5"
-                // value={item.quantity}
-                readOnly
-              />
-              <Button
-                variant="danger"
-                onClick={() => removeHandler(item[0].id)}
-              >
-                Remove
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </ListGroup.Item>
+      <div className={classes.listItem}>
+        <ListGroup.Item key={item[0].title}>
+          <Container>
+            <Row>
+              <Col>
+                <Image src={item[0].thumbnail} thumbnail />
+                <p>{item[0].title}</p>
+              </Col>
+              <Col>
+                <p> Rs {item[0].price}.00</p>
+              </Col>
+              <Col>
+                <div>
+                  <button
+                    onClick={() =>
+                      setEnteredQty((prev) => (prev !== 0 ? prev - 1 : prev))
+                    }
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min="1"
+                    max="5"
+                    value={enteredQty}
+                    readOnly
+                  />
+                  <button onClick={() => setEnteredQty((prev) => prev + 1)}>
+                    +
+                  </button>
+                </div>
+              </Col>
+              <Col>
+                {totalPrice}
+                <div className={classes.deletebtn}>
+                  <Button
+                    variant="danger"
+                    onClick={() => removeHandler(item[0].id)}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </ListGroup.Item>
+      </div>
     );
   });
   return (
@@ -52,28 +75,35 @@ function Cartmodal(props) {
         onHide={props.handleClose}
         backdrop="static"
         keyboard={false}
+        fullscreen={true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Cart</Modal.Title>
+          <Modal.Title>Your Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
             <Row>
               <Col>
-                <h2>ITEM</h2>
+                <h4>Product</h4>
               </Col>
               <Col>
-                <h2>Price</h2>
+                <h4>Price</h4>
               </Col>
               <Col>
-                <h2>Quantity</h2>
+                <h4>Qty</h4>
+              </Col>
+              <Col>
+                <h4>Total</h4>
               </Col>
             </Row>
           </Container>
           <ListGroup as="ul">{allItems}</ListGroup>
           <Container className="text-end">
             <h3>
-              Total <span>: Rs {totalPrice} /-</span>
+              SUB TOTAL{" "}
+              <span>
+                : Rs {totalPrice} <small>(exc. shipping fee)</small> /-
+              </span>
             </h3>
           </Container>
           {/* cart items */}

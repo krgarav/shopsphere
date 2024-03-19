@@ -1,0 +1,10 @@
+.deletebtn{
+    position: absolute;
+    opacity: 0;
+}
+.deletebtn:hover{
+    opacity: 1;
+}
+.listItem:hover{
+
+}
