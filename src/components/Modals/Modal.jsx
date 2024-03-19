@@ -113,27 +113,36 @@ function Cartmodal(props) {
               <ListGroup as="ul">{allItems}</ListGroup>
             </Container>
 
-            <Container className="text-end">
-              <h3>
-                SUB TOTAL{" "}
-                <span>
-                  : Rs {totalPrice} <small>(exc. shipping fee)</small> /-
-                </span>
-              </h3>
+            <Container className={`${classes.total_container}`}>
+              <section className={classes.code_box}>
+                <input type="text" placeholder="ENTER COUPON CODE EX FIRSTTRY"/>
+                <input type="button" value="Apply Code"/>
+              </section>
+              <section className={classes.sub_box}>
+                <h5>
+                  SUB TOTAL
+                  <span>
+                    : Rs {totalPrice} <small>(excl. shipping fee)</small> /-
+                  </span>
+                </h5>
+              </section>
             </Container>
 
             {/* cart items */}
           </Modal.Body>
         )}
 
-        {allItems.length===0&&
-        <Modal.Body>
-          <h1>Your cart is empty</h1>
-        </Modal.Body>
-        }
+        {allItems.length === 0 && (
+          <Modal.Body>
+            <h1>Your cart is empty</h1>
+          </Modal.Body>
+        )}
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
-            Close
+            Continue Shopping
+          </Button>
+          <Button variant="info" >
+            Checkout
           </Button>
         </Modal.Footer>
       </Modal>

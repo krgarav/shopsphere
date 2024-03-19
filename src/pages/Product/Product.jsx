@@ -36,7 +36,6 @@ const Product = () => {
     console.log(value);
     setPage(value);
   };
-  // console.log(currentPageProducts[0]);
   const allProducts = currentPageProducts.map((item,index) => {
     return (
       <Col
@@ -52,7 +51,6 @@ const Product = () => {
             component="img"
             alt="prdt"
             height="200"
-            // image-contain={true}
             image={item.thumbnail}
             style={{ objectFit: "fill" }}
           />

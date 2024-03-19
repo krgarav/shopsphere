@@ -59,3 +59,23 @@
   color: black;
   font-weight: 700;
 }
+.total_container{
+    /* background-color: rgb(220, 220, 220);
+    border-radius: 5px; */
+    display: flex;
+    justify-content: space-between;
+
+}
+.code_box{
+    /* width: 40%; */
+    padding: 10px 15px ;
+    border: 1px solid black;
+}
+.code_box input{
+    border: none;
+}
+.sub_box{
+    background-color: rgb(220, 220, 220);
+    border-radius: 5px;
+    padding: 10px;
+}
