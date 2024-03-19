@@ -87,6 +87,7 @@ function Cartmodal(props) {
         backdrop="static"
         keyboard={false}
         fullscreen={true}
+        className={classes.head_container}
       >
         <Modal.Header closeButton>
           <Modal.Title>Your Cart</Modal.Title>

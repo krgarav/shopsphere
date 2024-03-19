@@ -82,9 +82,10 @@ const Product = () => {
   });
 
   return (
-    <Fragment>
+    <Fragment >
+      <div className={classes.header}>
       <Header />
-      <Container className="text-center">
+      <Container className={`text-center `}>
         <ImageHeader />
         <br />
         <br />
@@ -92,6 +93,7 @@ const Product = () => {
         <Row>{allProducts}</Row>
       </Container>
       <Pagination count={100} page={page} onChange={handleChange} />
+      </div>
     </Fragment>
   );
 };

@@ -168,7 +168,7 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
@@ -204,10 +204,11 @@ export default function Header() {
               color="inherit"
               onClick={cartHandler}
             >
-              <Badge badgeContent={quantityInCart} color="error">
+              <Badge badgeContent={quantityInCart>0 ?quantityInCart:0} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
+            <span>|</span>
             <IconButton
               size="large"
               edge="end"
