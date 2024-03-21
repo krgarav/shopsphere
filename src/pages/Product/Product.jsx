@@ -11,13 +11,16 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import Pagination from "@mui/material/Pagination";
+import { useNavigate } from "react-router-dom";
 const Product = () => {
   const [products, setProducts] = useState([]);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
   const currentPageProducts = useSelector(
     (state) => state.cart.currentPageProducts
   );
+
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchdata = async () => {
@@ -27,16 +30,16 @@ const Product = () => {
     fetchdata();
   }, [page]);
   const addToCartHandler = (index) => {
-    // const element = products.filter((item) => item.id === id);
-    console.log(index)
     dispatch(cartAction.addToCart(index));
   };
-  console.log(itemsInCart);
   const handleChange = (event, value) => {
     console.log(value);
     setPage(value);
   };
-  const allProducts = currentPageProducts.map((item,index) => {
+  const handleProduct = (index) => {
+    navigate("/product/" + index);
+  };
+  const allProducts = currentPageProducts.map((item, index) => {
     return (
       <Col
         key={item.title}
@@ -45,6 +48,7 @@ const Product = () => {
         lg={4}
         xl={3}
         className={classes.productContainer}
+        onClick={() => handleProduct(index)}
       >
         <Card>
           <CardMedia
@@ -82,17 +86,17 @@ const Product = () => {
   });
 
   return (
-    <Fragment >
+    <Fragment>
       <div className={classes.header}>
-      <Header />
-      <Container className={`text-center `}>
-        <ImageHeader />
-        <br />
-        <br />
-        <br />
-        <Row>{allProducts}</Row>
-      </Container>
-      <Pagination count={100} page={page} onChange={handleChange} />
+        <Header />
+        <Container className={`text-center `}>
+          <ImageHeader />
+          <br />
+          <br />
+          <br />
+          <Row>{allProducts}</Row>
+        </Container>
+        <Pagination count={100} page={page} onChange={handleChange} />
       </div>
     </Fragment>
   );
