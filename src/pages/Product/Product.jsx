@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+import ProductBlock from "../../components/ProductBlock/ProductBlock";
 const Product = () => {
   const [products, setProducts] = useState([]);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
@@ -29,11 +31,12 @@ const Product = () => {
     };
     fetchdata();
   }, [page]);
-  const addToCartHandler = (index) => {
+  const addToCartHandler = (index, event) => {
+    event.stopPropagation();
+
     dispatch(cartAction.addToCart(index));
   };
   const handleChange = (event, value) => {
-    console.log(value);
     setPage(value);
   };
   const handleProduct = (index) => {
@@ -49,6 +52,7 @@ const Product = () => {
         xl={3}
         className={classes.productContainer}
         onClick={() => handleProduct(index)}
+        style={{ textAlign: "start" }}
       >
         <Card>
           <CardMedia
@@ -59,23 +63,34 @@ const Product = () => {
             style={{ objectFit: "fill" }}
           />
           <CardContent>
-            <Typography>{item.brand}</Typography>
-            <Typography gutterBottom variant="h4" component="div">
-              <span className={classes.title}>
-                {" "}
-                {capitalizeFirstLetter(item.title)}
-              </span>
-            </Typography>
-            <Typography>{item.rating}</Typography>
-            <Typography variant="body" color="text.secondary">
-              Rs {item.price}/-
+            <Row>
+              <Typography>{item.brand}</Typography>
+            </Row>
+            <Row style={{ maxHeight: "50px", overflow: "hidden" }}>
+              <Typography gutterBottom variant="h7" component="div">
+                <span className={classes.title}>
+                  {capitalizeFirstLetter(item.title)}
+                </span>
+              </Typography>
+            </Row>
+            <Row>
+              <div style={{ display: "flex", flexDirection: "row" ,marginBottom:"10px"}}>
+                <Rating name="disabled" value={item.rating} disabled />
+                <Typography color="text.secondary">
+                  ({Math.floor(item.rating * 100)})
+                </Typography>
+              </div>
+            </Row>
+            <Typography variant="body" color="text.bold">
+            ₹ {item.price}/-
             </Typography>
           </CardContent>
           <CardActions>
             <Button
               size="large"
               variant="contained"
-              onClick={() => addToCartHandler(index)}
+              onClick={(event) => addToCartHandler(index, event)}
+              style={{ width: "100%" }}
             >
               Add To Cart
             </Button>
@@ -96,7 +111,10 @@ const Product = () => {
           <br />
           <Row>{allProducts}</Row>
         </Container>
-        <Pagination count={100} page={page} onChange={handleChange} />
+        <div className={classes.pagination_container}>
+          <Pagination count={100} page={page} onChange={handleChange} />
+        </div>
+        <ProductBlock/>
       </div>
     </Fragment>
   );
